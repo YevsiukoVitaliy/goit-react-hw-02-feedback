@@ -36,23 +36,26 @@ export class Section extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
+    const {
+      countTotalFeedback,
+      countPositiveFeedbackPercentage,
+      onLeaveFeedback,
+      options,
+    } = this;
     return (
       <div>
         <h1>Please leave feedback</h1>
-        <FeedbackOptions
-          options={this.options}
-          onLeaveFeedback={this.onLeaveFeedback}
-        />
+        <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
         <h2>Statistics</h2>
-        {this.countTotalFeedback() === 0 ? (
+        {countTotalFeedback() === 0 ? (
           <Notification message="There is no feedback" />
         ) : (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            total={this.countTotalFeedback}
-            positivePercentage={this.countPositiveFeedbackPercentage}
+            total={countTotalFeedback}
+            positivePercentage={countPositiveFeedbackPercentage}
           />
         )}
       </div>
